@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="calculator1.css" />
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="container">
+
+<div class="calculator ">
+
+    <form >
+    
+        <div class="display ">
+            <input type="text" id="display">
+        </div>
+
+        <div>
+            <input type="button" value="AC"  onclick="funClear()" id="clear">
+            <input type="button" value="DE" id="Dlt"  class="operator"  >
+            <input type="button" value="."  onclick="funDot()" class="operator">
+            <input type="button" value="/"  onclick="funDiv()" class="operator">
+        </div>
+        <div>
+            <input type="button" value="7" id = "fun7" >
+            <input type="button" value="8"  id = "fun8" >
+            <input type="button" value="9" id=   "fun9" >
+            <input type="button" value="*" id=    "mul" class="operator" >
+        </div>
+
+        <div>
+            <input type="button" value="4" id="fun4" >
+            <input type="button" value="5" id="fun5"  >
+            <input type="button" value="6" id="fun6"  >
+            <input type="button" value="-" id="sub"  class="operator">
+        </div>
+
+        <div>
+            <input type="button" value="1"  id="fun1" >
+            <input type="button" value="2" id="fun2" >
+            <input type="button" value="3" id="fun3" >
+            <input type="button" value="+" id="add" class="operator">
+        </div>
+
+        
+        <div>
+            <input type="button" value="00"  id="fun00"  >
+            <input type="button" value="0"  id="fun0"  >
+            <input type="button" value="%" id ="funPer" >
+            <input type="button" value="=" id ="funEql" >
+        </div>
+    </form>
+    </div>
+
+    </div>
+    <script src="calculator1.js">
+      
+    </script>
+</body>
+</html>
