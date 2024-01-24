@@ -20,6 +20,7 @@ if(parent_List.children[0].className == "emptyMsg"){
     // newLi.textContent = addText.value
     //use bactics
     //template literals
+    // / insert in dom
     newLi.innerHTML = `<h3 class="flex-grow-1">  ${currentChapterName} </h3>  
     <button class="btn btn-warning mx-3">Edit</button>  
     <button class="btn btn-danger"  onclick="removeChapter(this)" >Remove</button>`

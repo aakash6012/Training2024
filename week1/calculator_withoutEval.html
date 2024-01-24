@@ -17,38 +17,38 @@
         </div>
 
         <div>
-            <input type="button" value="AC"  onclick="funClear()" id="clear">
+            <input type="button" value="AC"  onclick="clearDisplay()"  id="clear">
             <input type="button" value="DE" id="Dlt"  class="operator"  >
-            <input type="button" value="."  onclick="funDot()" class="operator">
-            <input type="button" value="/"  onclick="funDiv()" class="operator">
+            <input type="button" value="."  onclick="getNumber('.')" class="operator">
+            <input type="button" value="/"  onclick="getOperator('/')" class="operator">
         </div>
         <div>
-            <input type="button" value="7" id = "fun7" >
-            <input type="button" value="8"  id = "fun8" >
-            <input type="button" value="9" id=   "fun9" >
-            <input type="button" value="*" id=    "mul" class="operator" >
-        </div>
-
-        <div>
-            <input type="button" value="4" id="fun4" >
-            <input type="button" value="5" id="fun5"  >
-            <input type="button" value="6" id="fun6"  >
-            <input type="button" value="-" id="sub"  class="operator">
+            <input type="button" value="7" onclick="getNumber(7)"  >
+            <input type="button" value="8"  onclick="getNumber(8)"  >
+            <input type="button" value="9"  onclick="getNumber(9)"  >
+            <input type="button" value="*" onclick="getOperator('*')" class="operator" >
         </div>
 
         <div>
-            <input type="button" value="1"  id="fun1" >
-            <input type="button" value="2" id="fun2" >
-            <input type="button" value="3" id="fun3" >
-            <input type="button" value="+" id="add" class="operator">
+            <input type="button" value="4"  onclick="getNumber(4)" >
+            <input type="button" value="5"   onclick="getNumber(5)">
+            <input type="button" value="6"  onclick="getNumber(6)" >
+            <input type="button" value="-" onclick="getOperator('-')"  class="operator">
+        </div>
+
+        <div>
+            <input type="button" value="1" onclick="getNumber(1)"  >
+            <input type="button" value="2" onclick="getNumber(2)" >
+            <input type="button" value="3" onclick="getNumber(3)" >
+            <input type="button" value="+" onclick="getOperator('+')"  class="operator">
         </div>
 
         
         <div>
-            <input type="button" value="00"  id="fun00"  >
-            <input type="button" value="0"  id="fun0"  >
-            <input type="button" value="%" id ="funPer" >
-            <input type="button" value="=" id ="funEql" >
+            <input type="button" value="00" onclick="getNumber('00')"  >
+            <input type="button" value="0"  onclick="getNumber(0)"  >
+            <input type="button" value="%" onclick="getOperator('%')" id ="funPer" >
+            <input type="button" value="=" onclick="calculateResult()"  >
         </div>
     </form>
     </div>
