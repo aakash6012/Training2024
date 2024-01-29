@@ -33,9 +33,7 @@ if(parent_List.children[0].className == "emptyMsg"){
 
     
 }
-// let funEdit = document.getElementById('edit')
-// funEdit.addEventListener('click',()=>
-// console.log("hi"))
+
 
 function editChapter(currElement){
     // console.log(currElement.previousElementSibling)

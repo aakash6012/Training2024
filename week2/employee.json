@@ -1,0 +1,45 @@
+[
+    {
+        "name": "Manish Sharma",
+        "Designation":"Manager",
+        "Domain":"Developer",
+        "YearOfExperience" : "5 Years",
+        "image" : "../images/rohhit.png"
+
+        
+    },
+
+    {
+        "name": "Arpit Patidhar",
+        "Designation":"Sr. Software Engineer",
+        "Domain":"Developer",
+        "YearOfExperience" :"5 Years",
+        "image" :"../images/surya.png"
+
+    },
+
+    {
+        "name": "Mahesh Kumar",
+        "Designation":"Management",
+        "Domain":"Operation",
+        "YearOfExperience" :"5 Years",
+        "image" :"../images/download (1).jpg"
+    },
+
+    {
+        "name": "Gungan Mehta",
+        "Designation":"Intern",
+        "Domain":"Devops",
+        "YearOfExperience" :"Fresher",
+        "image" : "../images/download (2).jpg"
+
+    },
+
+    {
+        "name": "Rakesh Gaur",
+        "Designation":"Software Engineer",
+        "Domain":"Developer",
+        "YearOfExperience" : "2 Years",
+        "image" : "../images/download (3).jpg"
+    }
+]

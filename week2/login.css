@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(130, 106, 251);
+}
+
+.login-main {
+    background-color: white;
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+.labelColour {
+    transition: all 0.2s ease;
+}
+
+.labelColour:hover {
+    color: rgb(255, 0, 170);
+}
+
+.input-box {
+    padding: 10px;
+}
+
+.form .input-type {
+    width: 100%;
+    font-size: 4rem;
+    transition: all 0.2 ease;
+}
+
+input:hover,
+select:hover {
+    border-color: transparent;
+    box-shadow: 0 0 0 3px rgb(20, 20, 20);
+}
+
+#btn {
+
+    height: 46px;
+    width: 410px;
+    background: rgb(141, 245, 141);
+    transition: all 0.2 ease;
+
+}
+
+#btn:hover {
+    background-color: rgb(37, 243, 10);
+}
+
+
+input[type=text],
+input[type=password],
+input[type=phone] {
+
+
+    width: 40%;
+    padding: 12px 20px;
+    margin: 8px 0;
+
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+
+}
