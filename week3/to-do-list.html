@@ -1,0 +1,150 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <title>Document</title>
+  <link rel="stylesheet" href="doList.css" />
+  <style>
+    ul li button {
+      margin: 10px;
+    }
+    .close {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 12px 16px 12px 16px;
+    }
+
+    .close:hover {
+      background-color: #f44336;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="body-main">
+    <div class="todo-app">
+      <h2>To-Do List <img src="/images/pencil.png" width="8%" alt="" /></h2>
+      <div class="row">
+        <input id="add-txt" type="text" placeholder="Add your text here" />
+        <button id="add" onclick="func()">Add</button>
+      </div>
+
+      <div class="filter">
+        <span id="all">All</span>
+        <span id="Pending">Pending</span>
+        <span id="Completed">Completed</span>
+        <button id="clear">Clear All</button>
+      </div>
+      <hr />
+
+      <ul id="list-conatiner"></ul>
+    </div>
+  </div>
+
+  <script>
+    var addtxt = document.getElementById("add-txt");
+    const addBtn = document.getElementById("add-btn");
+    const listContainer = document.getElementById("list-conatiner");
+
+    let taskListArray = [];
+
+    function func() {
+      if (addtxt.value === "") {
+        alert("you must write something");
+      } else {
+        addTask();
+      }
+    }
+
+    function addTask() {
+      var todoObject = {
+        taskid: taskListArray.length + 1,
+        taskName: addtxt.value,
+        status: "pending",
+      };
+      taskListArray.push(todoObject);
+      console.log(taskListArray);
+
+      showTaskList();
+    }
+
+    function showTaskList() {
+      debugger;
+      document.getElementById("list-conatiner").innerHTML = "";
+      //
+
+      // debugger
+      for (var index = 0; index < taskListArray.length; index++) {
+        let li = document.createElement("li");
+
+        // li.addEventListener("click", statusPost);
+
+        li.textContent = taskListArray[index].taskName;
+
+        var deleteIcon = document.createElement("i");
+        deleteIcon.classList.add("close");
+        deleteIcon.classList.add("fas");
+        deleteIcon.classList.add("fa-trash-alt");
+        deleteIcon.addEventListener("click", deletePost);
+        deleteIcon.taskid = taskListArray[index].taskid;
+
+        listContainer.appendChild(li);
+
+        li.appendChild(deleteIcon);
+      }
+      addtxt.value = "";
+    }
+
+    listContainer.addEventListener(
+      "click",
+      function (event) {
+        var index = taskListArray.findIndex(
+          (m) => m.taskid == event.target.taskid
+        );
+        console.log(index);
+
+        if (event.target.tagName === "LI") {
+          event.target.classList.toggle("checked");
+          // saveData();
+        }
+
+        if (event.target.classList == "checked") {
+          console.log("checked");
+        } else {
+          console.log("uncheked");
+        }
+      },
+      false
+    );
+
+
+
+
+    function deletePost(event) {
+      // debugger;
+
+      var index = taskListArray.findIndex(
+        (m) => m.taskid == event.target.taskid
+      );
+      console.log("delet", index);
+      taskListArray.splice(index, 1);
+      showTaskList();
+    }
+
+    function statusPost(event) {
+      var index = taskListArray.findIndex(
+        (m) => m.taskid == event.target.taskid
+      );
+
+      console.log("sddds", index)
+    }
+
+
+  </script>
+</body>
+
+</html>

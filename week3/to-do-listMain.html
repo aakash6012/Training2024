@@ -1,0 +1,40 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Document</title>
+  <link rel="stylesheet" href="doList.css" />
+
+</head>
+
+<body>
+  <div class="body-main">
+    <div class="todo-app">
+      <h1>To-Do List <img src="/images/pencil.png" width="8%" alt="" /></h1>
+      <div class="row">
+        <i class="material-icons" style="font-size:36px"></i>
+        <input id="add-txt" type="text" placeholder="Add your text here" />
+        <button id="add" onclick="addTask()">Add</button>
+      </div>
+
+      <h2>Task List</h2>
+      <label for="">Show Tasks:</label>
+      <select  id="taskFilter" onchange="filtertask()">
+        <option value="All">All</option>
+        <option value="pending">Pending</option>
+        <option value="completed">Completed</option>
+      </select>
+    </div>
+    <hr>
+
+    <ul id="list-conatiner"></ul>
+  </div>
+  </div>
+
+  <script src="doList.js"></script>
+</body>
+
+</html>

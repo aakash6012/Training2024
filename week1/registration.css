@@ -108,6 +108,8 @@ body{
 input:hover, select:hover {
     border-color: transparent;
     box-shadow: 0 0 0 5px rgb(20, 20, 20);
+    
+    
     /* color: red; */
   }
 .input-box label{

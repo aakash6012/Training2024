@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center; 
+    height: 100vh;
+    background: #bb0000;
+  }
+/* .margin{
+  padding-left: 1344%;
+  background-color: red;
+} */
+  
+  .profile-main {
+    border: 2px solid;
+    width: 100%;
+    height: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    margin-top: 35%;
+  
+  
+  }
+  
+  #image {
+   
+  
+    border-radius: 50%;
+    /* margin-top: 32px; */
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: 50%;
+   
+    /* background-color: rgb(243, 181, 10); */
+  
+  }
+  
+  .profile-image1 {
+    background-color: rgb(243, 181, 10);
+    
+  
+  
+  }
+  
+  .text-data {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .fa {
+    padding-top: 20px;
+  
+    width: 50px;
+    height: 20px;
+    text-align: center;
+    margin-left: 35px;
+    border-radius: 50%;
+  }
+  
+  
+  
+  .fa-facebook {
+    background: #3B5998;
+    color: white
+  }
+  
+  .fa-twitter {
+    background: #55ACEE;
+    color: white
+  }
+  
+  .fa-linkedin {
+    background: #007bb5;
+    color: white;
+  }
+  
+  .fa-youtube {
+    background: #bb0000;
+    color: white;
+  }
+  
+  .company-name {
+    text-align: center;
+    margin-top: 10px
+  }
+  
+  .carousel-inner{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background: #bb0000;
+
+  }
+  
+
+#btn1{
+  padding: 15px;
+  margin-right: 55px;
+}
+
+#btn2{
+  padding: 15px;
+  margin-left: 55px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: DodgerBlue;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+}
+
+ol{
+  text-align: center;
+}
+
+.carousal-container{
+  text-align: center;
+}

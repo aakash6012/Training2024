@@ -11,18 +11,20 @@
 <body>
     <div class="Login-main">
         <h1>Login</h1>
-        <form action="#">
+        <form onsubmit="return validation()">
             <div class="input-box">
                 <label for="usname" class="labelColour"><b>Username </b></label>&nbsp &nbsp
                 <input type="text" id="usname" size="25" placeholder="Enter Username" ><br>
-            </div>
+                <span id="usererror"></span>
+            
+    </div>
 
             <div class="input-box">
                 <label for="pass"  class="labelColour"><b>Password </b></label>&nbsp &nbsp
                 <input type="password" id="pass" size="25" placeholder="Enter Password" ><br>
             </div>
 
-            <button  id="btn" type="button" onclick="onSubmitForn()">Submit</button>
+            <button  id="btn" type="submit" onclick="onSubmitForn()">Submit</button>
 
         </form>
     </div>

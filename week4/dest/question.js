@@ -1,0 +1,48 @@
+const questions = [
+    {
+        question: "which is largest animal in the world?",
+        answers: [
+            { text: "Shark", correct: false },
+            { text: "Blue whale", correct: true },
+            { text: "Giraffe", correct: false },
+            { text: "Elephant", correct: false },
+        ],
+    },
+    {
+        question: "which is smallest continent in the world?",
+        answers: [
+            { text: "Asia", correct: false },
+            { text: "Australia", correct: true },
+            { text: "Arctic", correct: false },
+            { text: "Africa", correct: false },
+        ],
+    },
+    {
+        question: "which is capital of India?",
+        answers: [
+            { text: "New Delhi", correct: true },
+            { text: "Jaipur", correct: false },
+            { text: "Udaipur", correct: false },
+            { text: "Kota", correct: false },
+        ],
+    },
+    {
+        question: "which city is called as Pink City?",
+        answers: [
+            { text: "New Delhi", correct: false },
+            { text: "Jaipur", correct: true },
+            { text: "Udaipur", correct: false },
+            { text: "Kota", correct: false },
+        ],
+    },
+    {
+        question: "which city is called as City of lake?",
+        answers: [
+            { text: "New Delhi", correct: false },
+            { text: "Jaipur", correct: false },
+            { text: "Udaipur", correct: true },
+            { text: "Kota", correct: false },
+        ],
+    },
+];
+export { questions };

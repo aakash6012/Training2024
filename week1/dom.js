@@ -11,27 +11,17 @@ if(parent_List.children[0].className == "emptyMsg"){
 
     let currentChapterName = addText.value;
     let newLi= document.createElement('li')
-    // adding class name here
 
-    //newLi.classList.add('list-group-item')
 
     newLi.className="list-group-item  d-flex justify-content-between";
-    // changing the value of text content
-    // newLi.textContent = addText.value
-    //use bactics
-    //template literals
-    // / insert in dom
+
     newLi.innerHTML = `<h3 class="flex-grow-1">  ${currentChapterName} </h3>  
     <button class="btn btn-warning mx-3">Edit</button>  
     <button class="btn btn-danger"  onclick="removeChapter(this)" >Remove</button>`
 
     // append vale know using dom
-   
-    parent_List.appendChild(newLi)
+   parent_List.appendChild(newLi)
 
-   
-
-    
 }
 
 
@@ -61,7 +51,6 @@ function editChapter(currElement){
     }
     // currElement.previousElementSibling.remove()
 
-
 }
 
 function removeChapter(currElement){
@@ -76,11 +65,8 @@ function removeChapter(currElement){
         newEmptyMsg.textContent = "Nothing is here .Please Add a Chapter!!"
         parent_List.appendChild(newEmptyMsg)
     }
-    // currElement.previousElementSibling.remove()
-
+   
 }
-
-
 
 
 

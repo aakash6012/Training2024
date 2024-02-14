@@ -30,6 +30,19 @@ var btn = document.getElementById('btn-login');
 // })
 
 
+function validation(){
+    var email = document.getElementById("usname").value;
+    var password = document.getElementById("pass").value;
+    // alert(email,password);
+   var user = /^[A-Z a-z . ]{3-30}$/
+
+   if(user.test(email)){
+    document.getElementById('usererror').innerHTML =" ";
+   }else{
+    document.getElementById('usererror').innerHTML =" ** invalid user "
+return false;
+   }
+}
 function onSubmitForn(){
     
 
@@ -50,7 +63,7 @@ function onSubmitForn(){
     {
 
         alert("Login  Successfull");
-         window.location.replace("http://127.0.0.1:5502/week2/gallery_main.html");
+         window.location.replace("http://127.0.0.1:5502/week4/dest/quizApp.html");
         // location.replace("ps://www.w3schools.com")
 
     }
