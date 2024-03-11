@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <!-- <link rel="stylesheet" href="doList.css" /> -->
+</head>
+<body>
+    <input type="text" id="add-txt">
+    <button onclick="addTask()">Add Task</button>
+    <select id="taskFilter" onchange="filtertask()">
+        <option value="all">All</option>
+        <option value="pending">Pending</option>
+        <option value="completed">Completed</option>
+    </select>
+    <ul id="list-conatiner"></ul>
+
+    <script>
+        class Task {
+            constructor(id, name) {
+                this.id = id;
+                this.name = name;
+                this.completed = false;
+                this.next = null;
+            }
+        }
+
+        class LinkedList {
+            constructor() {
+                this.head = null;
+            }
+
+            addTask(name) {
+                const newTask = new Task(this.size() + 1, name);
+                if (!this.head) {
+                    this.head = newTask;
+                } else {
+                    let current = this.head;
+                    while (current.next) {
+                        current = current.next;
+                    }
+                    current.next = newTask;
+                }
+            }
+
+            size() {
+                let count = 0;
+                let current = this.head;
+                while (current) {
+                    count++;
+                    current = current.next;
+                }
+                return count;
+            }
+
+            filterTasks(filterValue) {
+                let current = this.head;
+                const filteredTasks = [];
+                while (current) {
+                    if (filterValue === "all" ||
+                        (filterValue === "pending" && !current.completed) ||
+                        (filterValue === "completed" && current.completed)) {
+                        filteredTasks.push(current);
+                    }
+                    current = current.next;
+                }
+                return filteredTasks;
+            }
+
+            toggleCompleted(taskId) {
+                let current = this.head;
+                while (current) {
+                    if (current.id === taskId) {
+                        current.completed = !current.completed;
+                        break;
+                    }
+                    current = current.next;
+                }
+            }
+
+
+        }
+
+        const taskManager = new LinkedList();
+
+        function addTask() {
+            const taskInput = document.getElementById('add-txt');
+            const taskData = taskInput.value.trim();
+            if (taskData !== '') {
+                taskManager.addTask(taskData);
+                filtertask();
+                taskInput.value = ''; // Clear input field
+            }
+        }
+
+        function filtertask() {
+            const filterValue = document.getElementById('taskFilter').value;
+            const filteredTasks = taskManager.filterTasks(filterValue);
+            showTaskList(filteredTasks);
+        }
+
+        function showTaskList(tasks) {
+            const taskList = document.getElementById('list-conatiner');
+            taskList.innerHTML = '';
+            tasks.forEach(task => {
+                const taskItem = document.createElement('li');
+                taskItem.textContent = task.name;
+                const markCompletedButton = document.createElement('button');
+                markCompletedButton.textContent = task.completed ? 'Incomplete' : 'Complete';
+                markCompletedButton.onclick = () => toggleCompleted(task.id);
+                const deleteButton = document.createElement('i');
+                deleteButton.classList.add('close');
+                deleteButton.classList.add('fas');
+                deleteButton.classList.add('fa-trash-alt');
+                deleteButton.onclick = () => deleteTask(task.id);
+                taskItem.appendChild(markCompletedButton);
+                taskItem.appendChild(deleteButton);
+                taskList.appendChild(taskItem);
+            });
+        }
+
+        function toggleCompleted(taskId) {
+            taskManager.toggleCompleted(taskId);
+            filtertask();
+        }
+
+        function deleteTask(taskId) {
+            taskManager.deleteTask(taskId);
+            filtertask();
+        }
+    </script>
+</body>
+</html>

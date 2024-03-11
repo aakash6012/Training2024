@@ -1,0 +1,314 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  /* font-family: "Poppins", sans-serif; */
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(#00cc9c, #ff80d3);
+  /* font-family: "Poppins", sans-serif; */
+}
+h3 {
+  margin-left: 20px;
+}
+
+.bodyMain {
+  border: 2px;
+  width: 45%;
+  background-color: white;
+  padding-top: 3%;
+  box-shadow: 0 0 30px;
+  border-radius: 20px;
+}
+
+#remove {
+  color: red;
+  padding-left: 20px;
+  margin-left: 250px;
+}
+
+#edit {
+  color: green;
+  padding-left: 20px;
+  margin-left: 150px;
+}
+
+.task {
+  border: 1px solid #ccc;
+  justify-content: space-between;
+  margin: 5px 5px 5px;
+  border-radius: 20px;
+  box-shadow: 0 0 3px #5d5d5d;
+}
+
+.task button {
+  margin-left: 350px;
+  padding: 4px;
+}
+
+.icon-button {
+  background: #e2d8d8;
+  margin-left: 200px;
+  border: none;
+  border-radius: 50%;
+  position: relative;
+  width: 30px;
+}
+
+.icon-button:hover {
+  cursor: pointer;
+}
+
+.icon-button__badge {
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+  color: white;
+  width: 15px;
+  height: 15px;
+  top: -10px;
+  right: -10px;
+}
+#task-details {
+  display: none;
+  border: 1px solid #0f0e0e;
+  padding: 30px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  background-color: #51e6c0;
+  border-radius: 40px;
+}
+#task-details li {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.toDoInput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  border-radius: 30px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px #5d5d5d;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 50px;
+}
+.toDoInput input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 10px;
+}
+
+#addButton {
+  border: none;
+  outline: none;
+  padding: 16px 40px;
+  background: #e9a2e4;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+#addButton:hover {
+  background-color: #00cc9c;
+  color: rgb(255, 255, 255);
+}
+#filterDropdown {
+  margin-left: 20px;
+  border-radius: 10px;
+  padding: 3px;
+  color: grey;
+  margin-right: 10px;
+  /* border: 1px solid rgba(0, 0, 0, 0.5); */
+}
+
+#activity {
+  padding-bottom: 20px;
+}
+#searchInput {
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  outline: none;
+  padding: 3px;
+}
+
+.close {
+  right: 20px;
+  top: 0;
+  position: relative;
+  left: 100px;
+  padding: 12px 16px 12px 16px;
+}
+
+.close:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+li {
+  color: rgb(21, 21, 24);
+
+  padding-left: 39px;
+  position: relative;
+  top: 24px;
+
+  font-size: smaller;
+  display: block;
+}
+li::before {
+  content: "";
+  position: absolute;
+  background-image: url(/images/check2.png);
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  top: 2px;
+  left: 13px;
+}
+
+.markButton {
+  top: 0;
+  border-radius: 30px;
+  position: relative;
+  left: 80px;
+  padding-left: 50px;
+  cursor: pointer;
+}
+.markButton:hover {
+  background-color: #00cc9c;
+}
+
+#userinfo {
+  margin-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  margin-bottom: 10px;
+}
+#date-info {
+  margin-left: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+}
+
+#startDateInput {
+  /* border-radius: 20px; */
+  padding: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-left: 14px;
+  color: grey;
+}
+
+#endDateInput {
+  /* border-radius: 20px; */
+  padding: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: grey;
+}
+#endDateLabel {
+  margin-left: 160px;
+  margin-right: 10px;
+}
+
+#userName {
+  /* border-radius: 20px; */
+  padding: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-left: 10px;
+  width: 40px;
+  color: grey;
+}
+#newUserName {
+  /* border-radius: 20px; */
+  padding: 3px;
+  border: 1px solid;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 120px;
+  color: grey;
+}
+
+#adduserButton {
+  background: #e9a2e4;
+  color: white;
+  border-radius: 30px;
+  padding: 6px 4px;
+  border: none;
+  outline: none;
+}
+#adduserButton:hover {
+  background-color: #00cc9c;
+  color: rgb(255, 255, 255);
+}
+.completed {
+  text-decoration: line-through;
+}
+.completed::before {
+  background-image: url(/images/check3.png);
+}
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+
+#message {
+  margin-left: 180px;
+  padding: 15px;
+}
+
+.toastMessage {
+  display: none;
+  margin-left: 370px;
+  position: absolute;
+  margin-bottom: 40px;
+  background-color: rgb(250, 49, 22);
+  color: #fff;
+  padding: 7px 10px;
+  border-radius: 15px;
+  
+}
+
+.toastMessage.show {
+  display: block;
+}
+
+.toastMessageSuccess {
+  position: absolute;
+  display: none;
+  margin-left: 350px;
+  background-color: rgb(87, 250, 22);
+  color: #fff;
+  padding: 7px 10px;
+  border-radius: 15px;
+  margin-bottom: 400px;
+
+}
+
+.toastMessageSuccess.show {
+  display: block;
+}
+#date-info{
+  display: flex;
+  justify-content: space-between;
+}

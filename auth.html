@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>firebase-auth</title>
+</head>
+<body>
+    
+</body>
+<script  type="module" src="https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js"></script>
+<script   type="module" src="https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js"></script>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js';
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBOWVTPiBjCN3DDsgs6l45rEa1PPP7FRIY",
+    authDomain: "first-project-c08db.firebaseapp.com",
+    projectId: "first-project-c08db",
+    storageBucket: "first-project-c08db.appspot.com",
+    messagingSenderId: "614560517378",
+    appId: "1:614560517378:web:39887867468e218af2c61b"
+  };
+
+  // Initialize Firebase
+  
+  const app = initializeApp(firebaseConfig);
+  const firestore = getFirestore(app);
+  console.log("firestore", firestore)
+  console.log("auth",auth)
+</script>
+</html>

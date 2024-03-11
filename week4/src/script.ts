@@ -1,5 +1,14 @@
 // import { questions } from "./question.js";
 // console.log(questions)
+const startbtn = document.getElementById("start-btn") as HTMLElement;
+const quiz1=document.getElementById('quiz') as HTMLElement;
+const rules1=document.getElementById('rules') as HTMLElement;
+startbtn.addEventListener('click',()=>{
+quiz1.style.display="block";
+rules1.style.display="none";
+
+
+
 
 var questions: { question: string; answers: { text: string; correct: boolean; }[] }[]
 
@@ -13,7 +22,7 @@ async function fetchData() {
 
 
 fetchData().then((data) => {
- 
+
   questions = data;
   
 const questionElement = document.getElementById("question") as HTMLElement;
@@ -38,7 +47,6 @@ function myTimer() {
 function startQuiz() {
   currentQuestionIndex = 0;
   score = 0;
-
   showQuestion();
 }
 
@@ -117,6 +125,7 @@ nextBtn.addEventListener("click", () => {
   if (currentQuestionIndex == len - 1) {
     nextBtn.innerHTML = "Submit";
   }
+ 
 });
 
 function selectAnswer(e: Event) {
@@ -138,3 +147,5 @@ function selectAnswer(e: Event) {
 
 startQuiz();
 });
+
+})

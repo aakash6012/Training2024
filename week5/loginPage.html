@@ -1,0 +1,122 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Sign UP Form</title>
+    <link rel="stylesheet" href="loginPage.css" />
+
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="login-section">
+        <form action="" id="loginForm">
+          <h1>Login</h1>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input
+              type="text"
+              id="Email"
+              placeholder="Enter the email address"
+            /><br />
+          </div>
+
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              id="userPass"
+              placeholder="Enter the password"
+            /><br />
+          </div>
+
+          <button id="btnLogin" type="submit">Login</button>
+          <p>Don't have an account? <a href="#" id="button1">Login</a></p>
+
+          <p class="social-text">Or Sign in with social platforms</p>
+          <div class="social-media">
+            <a href="https://www.facebook.com/" class="social-icon">
+              <i  class="fab fa-facebook-f"></i>
+            </a>
+            <a  class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.google.co.in/" class="social-icon">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="https://www.linkedin.com/feed/" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </form>
+      </div>
+
+      <div id="signup-section" style="display: none">
+        <form action="" method="POST" id="registrationform">
+          <h1>Sign Up</h1>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input
+              type="text"
+              id="userName"
+              placeholder="Enter the user name"
+            /><br />
+          </div>
+
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input
+              type="text"
+              id="userEmail"
+              placeholder="Enter the email address"
+            /><br />
+          </div>
+
+          <div class="input-field">
+            <i class="fa-solid fa-phone"></i>
+            <input
+              type="number"
+              id="phone"
+              placeholder="Enter the phone number"
+            /><br />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter the password"
+            /><br />
+          </div>
+
+          <button id="btnSignup" sendMessage()>Sign Up</button>
+          <p>Already have an account? <a href="#" id="button2">Login</a></p>
+
+          <p class="social-text">Or Sign in with social platforms</p>
+          <div class="social-media">
+            <a href="https://www.facebook.com/" class="social-icon">
+              <i  class="fab fa-facebook-f"></i>
+            </a>
+            <a  class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.google.co.in/" class="social-icon">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="https://www.linkedin.com/feed/" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script  type="module" src="loginPage.js">
+        
+    </script>
+  </body>
+</html>

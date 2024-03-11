@@ -11,7 +11,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background: rgb(130, 106, 251); */
+    background-image: url('../images/background6.jpg');
+   
 }
 
 .login-main {
@@ -74,4 +75,8 @@ input[type=phone] {
     border: 1px solid #ccc;
     box-sizing: border-box;
 
+}
+
+#usererror{
+    color: red;
 }

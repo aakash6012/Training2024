@@ -96,3 +96,32 @@ h1{
   color: red;
   font-size: 25px;
 }
+
+
+.info-title {
+  text-align: center;
+  font-size: 35px;
+  border-bottom: 1px solid rgb(14, 13, 13);
+  margin-top: 12px;
+}
+
+.info {
+  font-size: 18px;
+  margin: 5px;
+}
+
+
+
+.info-button {
+  text-align: center;
+  border-top: 1px solid rgb(22, 21, 21);
+}
+
+.info-button #start-btn {
+
+  text-align: center;
+  padding: 8px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+
+}

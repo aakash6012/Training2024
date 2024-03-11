@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+.toastMessage {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px; 
+  background-color: rgb(27, 194, 55);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.toastMessage.show {
+  display: block;
+ 
+}
+
+
+    </style>
+</head>
+<body>
+    <button onclick="showToast()">Click Me</button>
+    
+    <div id="toastMessage" class="toastMessage">
+        <span style='font-size:20px;'>&#10003</span>
+        New Task is added by you!!!</div>
+    
+
+</body>
+<script>
+  // Given values
+// Given values
+// Given values
+let values = {
+  1638106: {email: 'aakashyadav112000@gmail.com', name: 'anand', password: '123', phone: '08302765048'},
+  2628912: {email: 'harshita@gmail.com', name: 'manish', password: '123', phone: '1234567'},
+  3880905: {email: 'aakashyadav112000@gmail.com', name: 'aakash', password: '123', phone: '08302765048'},
+  5549314: {email: 'dsd@gmail.comD', name: 'DSD', password: '123', phone: '123'},
+  5574423: {email: 'aakashyadav112000@gmail.com', name: 'aakash', password: '123', phone: '08302765048'},
+  6973235: {email: 'aakashyadav112000@gmail.com', name: 'anand', password: '123', phone: '08302765048'}
+};
+
+// Array to store email and password objects
+let users = [];
+
+// Iterate over the values object
+for (let key in values) {
+  // Push an object containing email and password into the 'users' array
+  users.push({ email: values[key].email, password: values[key].password });
+}
+
+// Now 'users' array contains objects with email and password
+console.log(users);
+
+
+
+</script>
+
+</html>

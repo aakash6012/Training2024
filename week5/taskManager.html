@@ -1,0 +1,70 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="task.css" />
+</head>
+
+<body>
+    <div class="bodyMain">
+
+        <div id="toastMessage" class="toastMessage">
+            <span style='font-size:20px;'>&#x2715</span>
+            Task is deleted by you!!!</div>
+
+            <div id="toastMessageSuccess" class="toastMessageSuccess">
+                <span style='font-size:20px;'>&#10003</span>
+                New Task is added by you!!!</div>
+
+        <div class="toDo">
+            <div class="toDoInput">
+              
+                <input id="addInput" type="text" placeholder="Add your task here" />
+                <button id="addButton" onclick="addTask()">Add Task</button>
+            </div>
+            <div class="toDoList">
+                <h3>Task Lists</h3>
+                <div id="activity">
+                    <select id="filterDropdown" onchange="filtertask()">
+                        <option value="all">All Tasks</option>
+                        <option value="completed">Completed Tasks</option>
+                        <option value="incomplete">Incomplete Tasks</option>
+                    </select>
+                    <input type="text" id="searchInput" placeholder="Search tasks" oninput="searchTasks()" />
+                    <button onclick="toggleNotification()" type="button" class="icon-button">
+                        <span class="material-icons">notifications</span>
+                        <span id="notification-count" class="icon-button__badge">0</span>
+                    </button>
+                </div>
+                <div id="date-info">
+                    <label  id="startDateLbl" for="startDate" >Start Date</label><br>
+                    <input type="date" id="startDateInput" name="startDate">
+                    <span id="startDateError" class="error-message"></span>
+                    <label id="endDateLabel" for="endDate"> End Date </label><br>
+                    <input type="date" id="endDateInput" name="endDate">
+                    <span id="endDateError" class="error-message"></span><br>
+                </div>
+                <div id="userinfo">
+                    <label for="userName">User Name       :</label>
+                    <select id="userName" name="userName" style="display: none;"></select>
+                    <input type="text" id="newUserName" placeholder="New User">
+                    <button id="adduserButton" type="button" onclick="addNewUser()">Add New User</button><br>
+                </div>
+                <hr />
+                <div id="task-details" style="display: none;">
+                    <h2>Tasks added:</h2>
+                    <ul id="notification-task-list"></ul>
+                </div>
+                <div id="tasks"></div>
+            </div>
+        </div>
+        <div id="message" style="display: none;">No tasks available.</div>
+
+</body>
+<script  src="task.js"></script>
+
+</html>

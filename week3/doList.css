@@ -105,6 +105,3 @@ ul li::before {
     text-decoration: line-through;
 }
 
-.completed::before {
-    background-image: url(/images/check3.png);
-}

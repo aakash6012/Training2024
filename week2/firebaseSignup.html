@@ -1,0 +1,128 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="login.css" />
+    <!-- <script type="module"  src=""></script> -->
+    <title>Sign UP Form</title>
+</head>
+
+<body>
+    <div class="Login-main" id="">
+        <h1>Sign UP</h1>
+
+        <form action="" method="POST" id="registrationform">
+            <div class="input-box">
+                <label for="usname" class="labelColour"><b>Username </b></label>&nbsp
+                &nbsp
+                <input type="text" id="usname" size="25" placeholder="Enter Username" required /><br />
+            </div>
+
+            <div class="input-box">
+                <label for="email" class="labelColour"><b>Email Address </b></label>&nbsp &nbsp
+                <input type="text" id="email" size="25" placeholder="Enter Email Address" required /><br />
+            </div>
+
+            <div class="input-box">
+                <label for="phone" class="labelColour"><b>Phone Number </b></label>&nbsp &nbsp
+                <input type="text" id="phone" size="25" placeholder="Enter Phone Number" required /><br />
+            </div>
+
+            <div class="input-box">
+                <label for="pass" class="labelColour"><b>Password </b></label>&nbsp
+                &nbsp
+                <input type="password" id="pass" size="25" placeholder="Enter Password" required /><br />
+            </div>
+
+            <!-- <button type="submit " onclick="register()" id="btn-login">Sign Up</button> -->
+            <!-- <button type="submit" onclick="sendMessage()">Register</button> -->
+            <button type="submit"  sendMessage()>Register</button>
+        </form>
+    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+        import {
+            getDatabase, ref, set, get, child, onValue
+        } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyATeWGSWKQxe5615G2mNZY9jvEzzKL0Ofw",
+            authDomain: "login-fire-base-75fec.firebaseapp.com",
+            databaseURL:
+                "https://login-fire-base-75fec-default-rtdb.firebaseio.com",
+            projectId: "login-fire-base-75fec",
+            storageBucket: "login-fire-base-75fec.appspot.com",
+            messagingSenderId: "611273500278",
+            appId: "1:611273500278:web:fbeee4936b986a785c2157",
+        };
+        const app = initializeApp(firebaseConfig);
+        document
+            .getElementById("registrationform")
+            .addEventListener("submit", formSubmit);
+
+        function formSubmit(e) {
+            e.preventDefault();
+
+            let name = document.querySelector("#usname").value;
+            let email = document.querySelector("#email").value;
+            let password = document.querySelector("#pass").value;
+            let phone = document.querySelector("#phone").value;
+
+            sendMessage(name, email, password, phone);
+        }
+
+        function sendMessage(name, email, password, phone) {
+            const database = getDatabase();
+
+            set(ref(database, "users/" + Math.floor(Math.random() * 10000000)), {
+                name: name,
+                email: email,
+                password: password,
+                phone: phone,
+            })
+                .then(() => {
+
+                    console.log(
+                        "User registered and additional information added to Firestore."
+                    );
+                })
+                .catch((error) => {
+
+                    console.error("Registration failed: ", error);
+                });
+
+
+
+        }
+
+        const db = getDatabase();
+        console.log(db, "db")
+        const starCountRef = ref(db, 'users/');
+        onValue(starCountRef, (snapshot) => {
+            const data = snapshot.val();
+            console.log(data, "data")
+
+            let users = [];
+
+            // Iterate over the values object
+            for (let key in data) {
+                // Push an object containing email and password into the 'users' array
+                users.push({ email: data[key].email, password: data[key].password });
+            }
+
+            // Now 'users' array contains objects with email and password
+            console.log(users);
+
+
+        }
+        );
+
+
+    </script>
+</body>
+
+</html>

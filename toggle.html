@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="week5/task.css"/>
+    <style>
+
+    </style>
+</head>
+
+<body>
+<div class="bodyMain">
+    <div class="toDo">
+        <div class="toDoInput">
+            <input id="addInput" type="text" placeholder="Add your task here"/>
+            <button id="addButton" onclick="addTask()">Add Task</button>
+        </div>
+        <div class="toDoList">
+            <h3>Task Lists</h3>
+            <div id="activity">
+                <select id="filterDropdown" onchange="filtertask()">
+                    <option value="all">All Tasks</option>
+                    <option value="completed">Completed Tasks</option>
+                    <option value="incomplete">Incomplete Tasks</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="Search tasks" oninput="searchTasks()"/>
+                <button onclick="toggleNotification()" type="button" class="icon-button">
+                    <span class="material-icons">notifications</span>
+                    <span id="notification-count" class="icon-button__badge">0</span>
+                </button>
+            </div>
+            <hr/>
+            <div id="task-details" style="display: none;">
+                <h2>Tasks added:</h2>
+                <ul id="notification-task-list"></ul>
+            </div>
+            <div id="tasks"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    class Task {
+        constructor(id, name) {
+            this.id = id;
+            this.name = name;
+            this.completed = false;
+            this.next = null;
+        }
+    }
+
+    class LinkedList {
+        constructor() {
+            this.head = null;
+            this.length = 0;
+        }
+
+
+        addTask(name) {
+            const newTask = new Task(this.size() + 1, name);
+            if (!this.head) {
+                this.head = newTask;
+            } else {
+                let current = this.head;
+                while (current.next) {
+                    current = current.next;
+                }
+                current.next = newTask;
+            }
+            this.length++;
+        }
+
+        size() {
+            return this.length;
+        }
+
+        filterTasks(filterValue) {
+            let current = this.head;
+            const filteredTasks = [];
+            while (current) {
+                if (
+                    filterValue === "all" ||
+                    (filterValue === "incomplete" && !current.completed) ||
+                    (filterValue === "completed" && current.completed)
+                ) {
+                    filteredTasks.push(current);
+                }
+                current = current.next;
+            }
+            return filteredTasks;
+        }
+
+        toggleCompleted(taskId) {
+            let current = this.head;
+            while (current) {
+                if (current.id === taskId) {
+                    current.completed = !current.completed;
+                    break;
+                }
+                current = current.next;
+            }
+        }
+
+        deleteTask(taskId) {
+            if (!this.head) {
+                return;
+            }
+            if (this.head.id === taskId) {
+                this.head = this.head.next;
+                this.length--;
+                return;
+            }
+            let current = this.head;
+            while (current.next) {
+                if (current.next.id === taskId) {
+                    current.next = current.next.next;
+                    this.length--;
+                    break;
+                }
+                current = current.next;
+            }
+        }
+
+        display() {
+            let current = this.head;
+            const tasks = [];
+            while (current) {
+                tasks.push(current);
+                current = current.next;
+            }
+            return tasks;
+        }
+    }
+
+    const taskManager = new LinkedList();
+    const taskList = new LinkedList();
+
+    function addTask() {
+        const taskInput = document.getElementById("addInput");
+        const taskData = taskInput.value.trim();
+        if (taskData !== "") {
+            taskList.addTask(taskData);
+            taskManager.addTask(taskData);
+            filtertask();
+            taskInput.value = "";
+        }
+    }
+
+    function filtertask() {
+        const filterValue = document.getElementById("filterDropdown").value;
+        const filteredTasks = taskManager.filterTasks(filterValue);
+        showTaskList(filteredTasks);
+    }
+
+    function showTaskList(tasks) {
+        const taskList = document.getElementById("tasks");
+
+        taskList.innerHTML = "";
+        tasks.forEach((task) => {
+            const taskDiv = document.createElement("div");
+            taskDiv.classList.add("task");
+            const taskItem = document.createElement("li");
+            taskItem.classList.add("taskValue");
+
+            taskItem.textContent = task.name;
+            const markCompletedButton = document.createElement("button");
+            markCompletedButton.textContent = task.completed ? "Incomplete" : "Complete";
+            markCompletedButton.classList.add("markButton");
+            markCompletedButton.onclick = () => toggleCompleted(task.id);
+            const deleteButton = document.createElement("i");
+            deleteButton.classList.add("close");
+            deleteButton.classList.add("fas");
+            deleteButton.classList.add("fa-trash-alt");
+            deleteButton.onclick = () => deleteTask(task.id);
+
+            taskDiv.appendChild(taskItem);
+            taskDiv.appendChild(markCompletedButton);
+            taskDiv.appendChild(deleteButton);
+            taskList.appendChild(taskDiv);
+        });
+        updateNotification(); 
+    }
+
+    function toggleCompleted(taskId) {
+        taskManager.toggleCompleted(taskId);
+        filtertask();
+    }
+
+    function deleteTask(taskId) {
+        taskManager.deleteTask(taskId);
+        filtertask();
+    }
+
+    function searchTasks() {
+        const searchInput = document.getElementById("searchInput");
+        const query = searchInput.value.trim().toLowerCase();
+        const tasks = document.querySelectorAll(".task");
+
+        tasks.forEach((task) => {
+            const taskText = task.textContent.toLowerCase();
+            if (taskText.includes(query)) {
+                task.style.display = "block";
+            } else {
+                task.style.display = "none";
+            }
+        });
+    }
+
+    function toggleNotification() {
+        const notification = document.getElementById("task-details");
+        if (notification.style.display === "none") {
+            notification.style.display = "block";
+            renderNotificationList(); 
+        } else {
+            notification.style.display = "none";
+        }
+    }
+
+    function renderNotificationList() {
+        const notificationListElement = document.getElementById("notification-task-list");
+        notificationListElement.innerHTML = ""; 
+        const tasks = taskList.display();
+        tasks.forEach((task) => {
+            const li = document.createElement("li");
+            li.textContent = task.name;
+            li.addEventListener("click", () => removeTaskFromNotification(task.id));
+            notificationListElement.appendChild(li);
+        });
+    }
+
+    function removeTaskFromNotification(taskId) {
+        taskList.deleteTask(taskId); 
+        renderNotificationList(); 
+        updateNotification(); 
+    }
+
+    function updateNotification() {
+        const notificationCount = document.getElementById("notification-count");
+        notificationCount.textContent = taskList.length;
+        if (taskList.length === 0) {
+            
+            document.getElementById("task-details").style.display = "block";
+        }
+       
+    }
+</script>
+</body>
+</html>

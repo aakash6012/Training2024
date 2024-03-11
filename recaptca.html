@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- This will show captcha errors -->
+    <div class="g-recaptcha" data-sitekey="6LfSspMpAAAAAIB3BG_-1PnFqO_ux4OEc-jqjGCa"></div>
+    <button id="submitButton">Submit</button>
+    <div id="captchaError"></div>
+    
+</body>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<script>
+document.getElementById('submitButton').addEventListener('click', function() {
+    var v = grecaptcha.getResponse();
+    if (v.length == 0) {
+        document.getElementById('captchaError').innerHTML = "You can't leave Captcha Code empty";
+    } else {
+        document.getElementById('captchaError').innerHTML = "";
+        // Reset the reCAPTCHA response
+        grecaptcha.reset();
+    }
+});
+</script>
+</html>

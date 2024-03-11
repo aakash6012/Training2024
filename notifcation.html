@@ -1,0 +1,540 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins',sans-serif;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(#00cc9c, #ff80d3);
+      }
+      h3{
+        margin-left: 20px;
+      }
+
+      .bodyMain {
+        border: 2px;
+        width: 40%;
+        background-color: white;
+        padding-top: 3%;
+        box-shadow: 0 0 30px;
+        border-radius: 20px;
+      }
+
+      #remove {
+        color: red;
+        padding-left: 20px;
+        margin-left: 250px;
+      }
+
+      #edit {
+        color: green;
+        padding-left: 20px;
+        margin-left: 150px;
+      }
+
+      .task {
+        display: flex;
+        border: 1px solid #ccc;
+        justify-content: space-between;
+        padding: 8px;
+        margin: 5px 5px 5px;
+      }
+
+      .task button {
+        color: red;
+        margin-left: 350px;
+      }
+
+      .icon-button {
+        background: #e2d8d8;
+        margin-left: 150px;
+        border: none;
+        border-radius: 50%;
+        position: relative;
+        width: 30px;
+      }
+
+      .icon-button:hover {
+        cursor: pointer;
+      }
+
+      .icon-button__badge {
+        background: red;
+        border-radius: 50%;
+        position: absolute;
+        color: white;
+        width: 15px;
+        height: 15px;
+        top: -10px;
+        right: -10px;
+      }
+      #task-details {
+        display: none;
+        border: 1px solid #0f0e0e;
+        padding: 30px;
+        margin-top: 10px;
+        background-color: rgb(204, 235, 235);
+      }
+
+      .toDoInput {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: none;
+        border-radius: 30px;
+        margin-bottom: 20px;
+        box-shadow: 0 0 10px #5d5d5d;
+        margin-left: 40px;
+        margin-right: 40px;
+      }
+      .toDoInput input {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 18px;
+        border-radius: 30px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        padding: 10px;
+      }
+
+      #addButton {
+        border: none;
+        outline: none;
+        padding: 16px 40px;
+        background: #c0a0c9;
+        color: white;
+        border-radius: 30px;
+        cursor: pointer;
+      }
+
+      #addButton:hover {
+        background-color: #00cc9c;
+        color: white;
+      }
+      #filterDropdown{
+        
+        margin-left: 20px;
+        border-radius: 10px;
+
+      }
+
+      #activity{
+        padding-bottom: 20px;
+      }
+      #searchInput{
+        border-radius: 10px;
+        outline: none;
+      }
+     
+    </style>
+  </head>
+
+  <body>
+    <div class="bodyMain">
+
+        <div id="toastMessage" class="toastMessage">
+            <span style='font-size:20px;'>&#x2715</span>
+            Task is deleted by you!!!</div>
+
+            <div id="toastMessageSuccess" class="toastMessageSuccess">
+                <span style='font-size:20px;'>&#10003</span>
+                New Task is added by you!!!</div>
+
+        <div class="toDo">
+            <div class="toDoInput">
+              
+                <input id="addInput" type="text" placeholder="Add your task here" />
+                <button id="addButton" onclick="addTask()">Add Task</button>
+            </div>
+            <div class="toDoList">
+                <h3>Task Lists</h3>
+                <div id="activity">
+                    <select id="filterDropdown" onchange="filtertask()">
+                        <option value="all">All Tasks</option>
+                        <option value="completed">Completed Tasks</option>
+                        <option value="incomplete">Incomplete Tasks</option>
+                    </select>
+                    <input type="text" id="searchInput" placeholder="Search tasks" oninput="searchTasks()" />
+                    <button onclick="toggleNotification()" type="button" class="icon-button">
+                        <span class="material-icons">notifications</span>
+                        <span id="notification-count" class="icon-button__badge">0</span>
+                    </button>
+                </div>
+                <div id="date-info">
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDateInput" name="startDate">
+                    <span id="startDateError" class="error-message"></span>
+                    <label id="endDateLabel" for="endDate"> End Date:</label>
+                    <input type="date" id="endDateInput" name="endDate">
+                    <span id="endDateError" class="error-message"></span><br>
+                </div>
+                <div id="userinfo">
+                    <label for="userName">User Name:</label>
+                    <select id="userName" name="userName" style="display: none;"></select>
+                    <input type="text" id="newUserName" placeholder="New User">
+                    <button id="adduserButton" type="button" onclick="addNewUser()">Add New User</button><br>
+                </div>
+                <hr />
+                <div id="task-details" style="display: none;">
+                    <h2>Tasks added:</h2>
+                    <ul id="notification-task-list"></ul>
+                </div>
+                <div id="tasks"></div>
+            </div>
+        </div>
+        <div id="message" style="display: none;">No tasks available.</div>
+
+</body>
+
+  <script>
+
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import {
+    getDatabase, ref, set, get, child, onValue
+} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBOWVTPiBjCN3DDsgs6l45rEa1PPP7FRIY",
+    authDomain: "first-project-c08db.firebaseapp.com",
+    databaseURL: "https://first-project-c08db-default-rtdb.firebaseio.com",
+    projectId: "first-project-c08db",
+    storageBucket: "first-project-c08db.appspot.com",
+    messagingSenderId: "614560517378",
+    appId: "1:614560517378:web:39887867468e218af2c61b"
+  };
+
+//   document.getElementById("addButton").addEventListener("click", formSubmit);
+// var duplicate;
+const app = initializeApp(firebaseConfig);
+
+class Task {
+    constructor(id, name, startDate, endDate, userName) {
+        this.id = id;
+        this.name = name;
+        this.completed = false;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.userName = userName;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+    constructor() {
+        this.head = null;
+        this.length = 0;
+    }
+
+    addTask(name, startDate, endDate, userName) {
+        const newTask = new Task(this.size() + 1, name, startDate, endDate, userName);
+        if (!this.head) {
+            this.head = newTask;
+        } else {
+            let current = this.head;
+            while (current.next) {
+                current = current.next;
+            }
+            current.next = newTask;
+        }
+        this.length++;
+    }
+
+    size() {
+        return this.length;
+    }
+
+    filterTasks(filterValue) {       
+        let current = this.head;
+        const filteredTasks = [];
+        while (current) {
+            if (
+                filterValue === "all" ||
+                (filterValue === "incomplete" && !current.completed) ||
+                (filterValue === "completed" && current.completed)
+            ) {
+                filteredTasks.push(current);
+            }
+            current = current.next;
+        }
+        return filteredTasks;
+    }
+
+    markTaskCompleted(taskId) {
+        let current = this.head;
+        while (current) {
+            if (current.id === taskId) {
+                current.completed = !current.completed;
+                break;
+            }
+            current = current.next;
+        }
+    }
+
+    deleteTask(taskId) {
+        if (!this.head) {
+            return;
+        }
+        if (this.head.id === taskId) {
+            this.head = this.head.next;
+            this.length--;
+            return;
+        }
+        let current = this.head;
+        while (current.next) {
+            if (current.next.id === taskId) {
+                current.next = current.next.next;
+                this.length--;
+                break;
+            }
+            current = current.next;
+        }
+    }
+
+    display() {
+          let current = this.head;
+        const tasks = [];
+        while (current) {
+            tasks.push(current);
+            current = current.next;
+        }
+        return tasks;
+    }
+}
+
+const taskManager = new LinkedList();
+const taskList = new LinkedList();
+
+var addBtn = document.getElementById("addButton").addEventListener("click", addTask)
+
+function addTask() {
+    const taskInput = document.getElementById("addInput");
+    const taskData = taskInput.value.trim();
+    const startDate = document.getElementById("startDateInput").value.trim();
+    const endDate = document.getElementById("endDateInput").value.trim();
+    const userName = document.getElementById("userName").value.trim();
+    document.getElementById("startDateError").textContent = "";
+    document.getElementById("endDateError").textContent = "";
+    let isValid = true;
+    if (taskData === "") {
+        isValid = false;
+    }
+    if (startDate === "") {
+        document.getElementById("startDateError").textContent = "Start Date is required";
+        isValid = false;
+    }
+    if (endDate === "") {
+        document.getElementById("endDateError").textContent = "End Date is required";
+        isValid = false;
+    }
+    if (userName === "") {
+        alert("User Name is required");
+        isValid = false;
+    }
+
+    if (!isValid) {
+        return;
+    }
+
+    taskList.addTask(taskData, startDate, endDate, userName);
+    // function sendMessage(taskData, startDate, endDate, userName) {
+        const database = getDatabase();
+
+        set(ref(database, "users/" + Math.floor(Math.random() * 10000000)), {
+            Task: taskData,
+            startDate: startDate,
+            endDate: endDate,
+            UserName: userName,
+        })
+    // }
+    taskManager.addTask(taskData, startDate, endDate, userName);
+    filtertask();
+    taskInput.value = "";
+    document.getElementById("startDateInput").value = "";
+    document.getElementById("endDateInput").value = "";
+
+    message.style.display ="none";
+    showToastSuccess()
+}
+
+function filtertask() {
+    const filterValue = document.getElementById("filterDropdown").value;
+    const filteredTasks = taskManager.filterTasks(filterValue);
+    showTaskList(filteredTasks);
+}
+
+function showTaskList(tasks) {
+      const taskList = document.getElementById("tasks");
+
+    taskList.innerHTML = "";
+    tasks.forEach((task) => {
+        const taskDiv = document.createElement("div");
+        taskDiv.classList.add("task");
+        const taskItem = document.createElement("li");
+        let taskClass = "tasks";
+        if (task.completed) {
+            taskClass += " completed";
+        }
+        taskItem.className = taskClass;
+
+
+        taskItem.textContent = ` ${task.name} |  Date: ${task.startDate} |  Date: ${task.endDate} | User: ${task.userName}`;
+        const markCompletedButton = document.createElement("button");
+        markCompletedButton.textContent = task.completed ? "Incomplete" : "Complete";
+
+        markCompletedButton.classList.add("markButton");
+        markCompletedButton.onclick = () => toggleCompleted(task.id);
+        const deleteButton = document.createElement("i");
+        deleteButton.classList.add("close");
+        deleteButton.classList.add("fas");
+        deleteButton.classList.add("fa-trash-alt");
+        deleteButton.onclick = () => deleteTask(task.id);
+
+        taskDiv.appendChild(taskItem);
+        taskDiv.appendChild(markCompletedButton);
+        taskDiv.appendChild(deleteButton);
+        taskList.appendChild(taskDiv);
+    });
+    updateNotification();
+  
+}
+
+function toggleCompleted(taskId) {
+    taskManager.markTaskCompleted(taskId);
+    filtertask();
+}
+
+function deleteTask(taskId) {
+    taskManager.deleteTask(taskId);
+    filtertask();
+    showToast();
+}
+
+function searchTasks() {
+    const searchInput = document.getElementById("searchInput");
+    const query = searchInput.value.trim().toLowerCase();
+    const tasks = document.querySelectorAll(".task");
+    const message = document.getElementById("message");
+    message.style.display ="none";
+
+    let found = false;
+
+    tasks.forEach((task) => {
+        const taskText = task.textContent.toLowerCase();
+        if (taskText.includes(query)) {
+            task.style.display = "block"; 
+            found = true;
+        } else {
+            task.style.display = "none";
+           
+        }
+    });
+
+    if (!found) {
+        message.style.display = "block";
+      
+    } else {
+        message.style.display = "none";
+    }
+   
+}
+
+function toggleNotification() {
+   
+    const notification = document.getElementById("task-details");
+    if (notification.style.display === "none") {
+        notification.style.display = "block";
+        
+        renderNotificationList();
+    } else {
+        notification.style.display = "none";
+    }
+}
+
+function renderNotificationList() {
+ 
+    const notificationListElement = document.getElementById("notification-task-list");
+    notificationListElement.innerHTML = "";
+    const tasks = taskList.display();
+    tasks.forEach((task) => {
+        const li = document.createElement("li");
+        li.textContent = task.name;
+        li.addEventListener("click", () => removeTaskFromNotification(task.id));
+        notificationListElement.appendChild(li);
+    });
+}
+
+function removeTaskFromNotification(taskId) {
+ 
+    taskList.deleteTask(taskId);
+    renderNotificationList();
+    updateNotification();
+}
+
+function updateNotification() {
+  
+    const notificationCount = document.getElementById("notification-count");
+    notificationCount.textContent = taskList.length;
+    if (taskList.length === 0) {
+        document.getElementById("task-details").style.display = "block";
+    }
+}
+
+
+var adduserBtn = document.getElementById("adduserButton").addEventListener("click", addNewUser)
+
+
+function addNewUser() {
+    const newUserName = document.getElementById("newUserName").value.trim();
+    var selectName = document.getElementById("userName");
+  
+
+    if (newUserName !== "") {
+        selectName.style.display = "block";
+        const select = document.getElementById("userName");
+        const option = document.createElement("option");
+        option.text = newUserName;
+        select.add(option);
+    }
+}
+
+function showToast() {
+    var toast = document.getElementById("toastMessage");
+    toast.classList.add("show");
+    setTimeout(function(){
+      toast.classList.remove("show");
+    }, 2000); 
+  }
+
+
+  function showToastSuccess() {
+    var toast = document.getElementById("toastMessageSuccess");
+    toast.classList.add("show");
+    setTimeout(function(){
+      toast.classList.remove("show");
+    }, 2000); 
+  }
+
+  </script>
+</html>
